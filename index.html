@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+            font-size: 2em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            border: 10px solid #4CAF50;
+            box-shadow: 10px 10px 10px #999;
+            position: relative;
+        }
+
+        .box:hover {
+            animation: rotate 2s infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #recommendation {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+    </style>
+    <title>Vocaloid音乐介绍</title>
+</head>
+<body>
+
+    <div class="popup-container" id="popup">
+        <h2>恭喜你找到了彩蛋</h2>
+        <p>这是一个废弃的网页，因为种种原因被另外的方案所代替，但仍然被保存了下来。</p>
+        <button onclick="closePopup()">关闭</button>
+    </div>
+
+    <h1>Vocaloid音乐介绍</h1>
+    <p>Vocaloid是一种基于人声采样的合成技术，可以用来制作虚拟歌手的歌曲。Vocaloid的声库由不同的角色代表，每个角色都有自己的声音、形象和个性。Vocaloid音乐是指使用Vocaloid技术创作的音乐，它涵盖了多种风格和流派，如流行、摇滚、电子、古典等。</p>
+    <p>以下是一些著名的Vocaloid角色和他们的相关信息：</p>
+    <table>
+        <tr>
+            <th>角色</th>
+            <th>声库</th>
+            <th>语言</th>
+            <th>开发商</th>
+        </tr>
+        <tr>
+            <td>初音ミク</td>
+            <td>VOCALOID2, VOCALOID3, VOCALOID4</td>
+            <td>日语</td>
+            <td>Crypton Future Media</td>
+        </tr>
+        <tr>
+            <td>鏡音リン・レン</td>
+            <td>VOCALOID2, VOCALOID4</td>
+            <td>日语</td>
+            <td>Crypton Future Media</td>
+        </tr>
+        <tr>
+            <td>巡音ルカ</td>
+            <td>VOCALOID2, VOCALOID4</td>
+            <td>日语, 英语</td>
+            <td>Crypton Future Media</td>
+        </tr>
+        <tr>
+            <td>MEIKO</td>
+            <td>VOCALOID, VOCALOID3</td>
+            <td>日语</td>
+            <td>Crypton Future Media</td>
+        </tr>
+        <tr>
+            <td>KAITO</td>
+            <td>VOCALOID, VOCALOID3</td>
+            <td>日语</td>
+            <td>Crypton Future Media</td>
+        </tr>
+        <tr>
+            <td>GUMI</td>
+            <td>VOCALOID2, VOCALOID3, VOCALOID4</td>
+            <td>日语, 英语, 韩语, 西班牙语, 汉语</td>
+            <td>Internet Co., Ltd.</td>
+        </tr>
+        <tr>
+            <td>IA</td>
+            <td>VOCALOID3, VOCALOID4</td>
+            <td>日语, 英语</td>
+            <td>1st Place</td>
+        </tr>
+        <tr>
+            <td>洛天依</td>
+            <td>VOCALOID3, VOCALOID4</td>
+            <td>汉语, 日语</td>
+            <td>Shanghai HENIAN</td>
+        </tr>
+        <tr>
+            <td>乐正绫</td>
+            <td>VOCALOID3, VOCALOID4</td>
+            <td>汉语</td>
+            <td>Shanghai HENIAN</td>
+        </tr>
+        <tr>
+            <td>言和</td>
+            <td>VOCALOID5</td>
+            <td>汉语</td>
+            <td>Beijing Photek S&T Development Co., Ltd.</td>
+        </tr>
+    </table>
+    <p>如果你想了解更多关于Vocaloid音乐的信息，你可以填写以下表单，我们会根据你的选择为你推荐一些相关的资源。</p>
+    <form>
+        <label>你喜欢哪种语言的Vocaloid音乐？</label>
+        <select id="language">
+            <option value="all">所有语言</option>
+            <option value="japanese">日语</option>
+            <option value="english">英语</option>
+            <option value="chinese">汉语</option>
+            <option value="other">其他语言</option>
+        </select>
+        <label>你喜欢哪种风格的Vocaloid音乐？</label>
+        <select id="genre">
+            <option value="all">所有风格</option>
+            <option value="pop">流行</option>
+            <option value="rock">摇滚</option>
+            <option value="electronic">电子</option>
+            <option value="classical">古典</option>
+            <option value="other">其他风格</option>
+        </select>
+        <label>你喜欢哪个Vocaloid角色？</label>
+        <input type="text" id="character" placeholder="请输入你喜欢的Vocaloid角色的名字，如果没有特别喜欢的，可以留空">
+        <input type="submit" value="提交" onclick="event.preventDefault(); recommend();">
+    </form>
+    <script>
+        // 定义一个JavaScript函数，用来根据用户的表单输入为他们推荐一些Vocaloid音乐的资源
+        function recommend() {
+            // 获取用户的表单输入
+            var language = document.getElementById("language").value;
+            var genre = document.getElementById("genre").value;
+            var character = document.getElementById("character").value;
+            // 定义一个数组，用来存储推荐的资源
+            var resources = [];
+            // 根据用户的输入，添加一些适合的资源到数组中
+            // 这里只是举例，你可以根据你的喜好和知识添加更多的资源
+            if (language == "all" || language == "japanese") {
+                if (genre == "all" || genre == "pop") {
+                    resources.push("https://www.youtube.com/watch?v=MGt25mv4-2Q"); // 初音ミク - 千本桜
+                    resources.push("https://www.youtube.com/watch?v=shs0rAiwsGQ"); // 鏡音リン・レン - リモコン
+                    resources.push("https://www.youtube.com/watch?v=KqX52AW9E2o"); // 巡音ルカ - Just Be Friends
+                }
+                if (genre == "all" || genre == "rock") {
+                    resources.push("https://www.youtube.com/watch?v=0QLgUg6kYfE"); // 初音ミク - ローリンガール
+                    resources.push("https://www.youtube.com/watch?v=4xuXkVzBdJQ"); //鏡音リン・レン - 恋は戦争
+                }
+                if (genre == "all" || genre == "electronic") {
+                    resources.push("https://www.youtube.com/watch?v=QxkMzn4et2U"); // 初音ミク - ワールドイズマイン
+                    resources.push("https://www.youtube.com/watch?v=6hlADpxjj0s"); // GUMI - メランコリック
+                    resources.push("https://www.youtube.com/watch?v=8y1D8KGtHfQ"); // IA - アイロニ
+                }
+                if (genre == "all" || genre == "classical") {
+                    resources.push("https://www.youtube.com/watch?v=ahXQ4pGnFqQ"); // 初音ミク - 千年の独奏歌
+                    resources.push("https://www.youtube.com/watch?v=K_xTet06SUo"); // 巡音ルカ - ルカルカ★ナイトフィーバー
+                    resources.push("https://www.youtube.com/watch?v=O0TtDeDiHcE"); // KAITO - 千本桜
+                }
+                if (genre == "all" || genre == "other") {
+                    resources.push("https://www.youtube.com/watch?v=2R32sGCZ0p0"); // 初音ミク - ポッピンキャンディ☆フィーバー！
+                    resources.push("https://www.youtube.com/watch?v=egxSBhfjcTU"); // 鏡音リン・レン - おこちゃま戦争
+                    resources.push("https://www.youtube.com/watch?v=5yH99a9jsgA"); // 巡音ルカ - ダブルラリアット
+                }
+            }
+            if (language == "all" || language == "english") {
+                if (genre == "all" || genre == "pop") {
+                    resources.push("https://www.youtube.com/watch?v=0yLdgJKBp5w"); // Hatsune Miku - Tell Your World
+                    resources.push("https://www.youtube.com/watch?v=0R8xjP2rQaU"); // GUMI - Echo
+                    resources.push("https://www.youtube.com/watch?v=4NshQYuuJ9k"); // IA - A Realistic Logical Ideologist
+                }
+                if (genre == "all" || genre == "rock") {
+                    resources.push("https://www.youtube.com/watch?v=5yYMicbSf98"); // Hatsune Miku - The World is Mine
+                    resources.push("https://www.youtube.com/watch?v=Kt0dpr0NJus"); // GUMI - Ten Faced
+                    resources.push("https://www.youtube.com/watch?v=2DLnhdnSUVs"); // IA - Six Trillion Years and Overnight Story
+                }
+                if (genre == "all" || genre == "electronic") {
+                    resources.push("https://www.youtube.com/watch?v=HoBa2SyvtpE"); // Hatsune Miku - World's End Dancehall
+                    resources.push("https://www.youtube.com/watch?v=Kt0dpr0NJus"); // GUMI - Copycat
+                    resources.push("https://www.youtube.com/watch?v=8Uee_mcxvrw"); // IA - Outer Science
+                }
+                if (genre == "all" || genre == "classical") {
+                    resources.push("https://www.youtube.com/watch?v=4bEGLbCNRqw"); // Hatsune Miku - Senbonzakura
+                    resources.push("https://www.youtube.com/watch?v=K_xTet06SUo"); // Megurine Luka - Luka Luka Night Fever
+                    resources.push("https://www.youtube.com/watch?v=O0TtDeDiHcE"); // KAITO - Senbonzakura
+                }
+                if (genre == "all" || genre == "other") {
+                    resources.push("https://www.youtube.com/watch?v=2R32sGCZ0p0"); // Hatsune Miku - Poppin' Candy Fever
+                    resources.push("https://www.youtube.com/watch?v=egxSBhfjcTU"); // Kagamine Rin & Len - Childish War
+                    resources.push("https://www.youtube.com/watch?v=5yH99a9jsgA"); // Megurine Luka - Double Lariat
+                }
+            }
+            if (language == "all" || language == "chinese") {
+                if (genre == "all" || genre == "pop") {
+                    resources.push("https://www.youtube.com/watch?v=4NshQYuuJ9k"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零
+                    resources.push("https://www.youtube.com/watch?v=8y1D8KGtHfQ"); // IA - 洛天依 - 夜舞
+                    resources.push("https://www.youtube.com/watch?v=6hlADpxjj0s"); // GUMI - 洛天依 - 一觉醒来
+                }
+                if (genre == "all" || genre == "rock") {
+                    resources.push("https://www.youtube.com/watch?v=0QLgUg6kYfE"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 滚蛋吧！肿瘤君
+                    resources.push("https://www.youtube.com/watch?v=4xuXkVzBdJQ"); // 鏡音リン・レン - 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 东京不太热
+                    resources.push("https://www.youtube.com/watch?v=2DLnhdnSUVs"); // IA - 洛天依 - 六兆年と一夜物語
+                }
+                if (genre == "all" || genre == "electronic") {
+                    resources.push("https://www.youtube.com/watch?v=QxkMzn4et2U"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 我的世界
+                }
+                if (genre == "all" || genre == "classical") {
+                    resources.push("https://www.youtube.com/watch?v=ahXQ4pGnFqQ"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 千年の独奏歌
+                    resources.push("https://www.youtube.com/watch?v=K_xTet06SUo"); // 巡音ルカ - 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - ルカルカ★ナイトフィーバー
+                    resources.push("https://www.youtube.com/watch?v=O0TtDeDiHcE"); // KAITO - 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 千本桜
+                }
+                if (genre == "all" || genre == "other") {
+                    resources.push("https://www.youtube.com/watch?v=2R32sGCZ0p0"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - ポッピンキャンディ☆フィーバー！
+                    resources.push("https://www.youtube.com/watch?v=egxSBhfjcTU"); // 鏡音リン・レン - 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - おこちゃま戦争
+                    resources.push("https://www.youtube.com/watch?v=5yH99a9jsgA"); // 巡音ルカ - 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - ダブルラリアット
+                }
+            }
+            if (language == "all" || language == "other") {
+                // 如果用户选择了其他语言，可以根据他们喜欢的Vocaloid角色来推荐一些资源
+                if (character == "言和") {
+                    resources.push("https://www.youtube.com/watch?v=4NshQYuuJ9k"); // 言和 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零
+                    resources.push("https://www.youtube.com/watch?v=8y1D8KGtHfQ"); // 言和 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 夜舞
+                    resources.push("https://www.youtube.com/watch?v=6hlADpxjj0s"); // 言和 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零 - 一觉醒来
+                }
+                else if (character == "MEIKO") {
+                    resources.push("https://www.youtube.com/watch?v=0yLdgJKBp5w"); // MEIKO - Change me
+                    resources.push("https://www.youtube.com/watch?v=0R8xjP2rQaU"); // MEIKO - Nostalogic
+                    resources.push("https://www.youtube.com/watch?v=4NshQYuuJ9k"); // MEIKO - Snow White Princess
+                }
+                else if (character == "言和") {
+                    resources.push("https://www.youtube.com/watch?v=HoBa2SyvtpE"); // KAITO - World's End Dancehall
+                    resources.push("https://www.youtube.com/watch?v=Kt0dpr0NJus"); // KAITO - Cantarella
+                    resources.push("https://www.youtube.com/watch?v=8Uee_mcxvrw"); // KAITO - Outer Science
+                }
+                else {
+                    // 如果用户没有输入喜欢的Vocaloid角色，或者输入的角色不在我们的列表中，可以随机推荐一些资源
+                    resources.push("https://www.youtube.com/watch?v=MGt25mv4-2Q"); // 初音ミク - 千本桜
+                    resources.push("https://www.youtube.com/watch?v=0yLdgJKBp5w"); // Hatsune Miku - Tell Your World
+                    resources.push("https://www.youtube.com/watch?v=4NshQYuuJ9k"); // 洛天依 - 乐正绫 - 乐正龙牙 - 乐正嵐 - 乐正音符 - 乐正辰 - 乐正零
+                }
+            }
+            // 定义一个变量，用来存储推荐的资源的HTML代码
+            var html = "<p>根据你的选择，我们为你推荐了以下一些Vocaloid音乐的资源，你可以点击链接来观看或收听：</p><ul>";
+            // 遍历推荐的资源数组，将每个资源的链接添加到HTML代码中
+            for (var i = 0; i < resources.length; i++) {
+                html += "<li><a href='" + resources[i] + "' target='_blank'>" + resources[i] + "</a></li>";
+            }
+            html += "</ul>";
+            // 将HTML代码插入到网页中的一个div元素中，用来显示推荐的资源
+            document.getElementById("recommendation").innerHTML = html;
+        }
+
+            window.onload = function () {
+            document.getElementById('popup').style.display = 'block';
+        };
+
+   
+            function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+
+    window.onload = function () {
+        L2Dwidget.init({
+            "model": {
+                // 选择看板娘模型的路径
+                "jsonPath": "path/to/live2d-widget/models/xxx/model.json",
+            },
+            "display": {
+                "position": "right", // 设置看板娘的位置，可选值：left, right
+                "width": 150, // 设置看板娘的宽度
+                "height": 300, // 设置看板娘的高度
+                "hOffset": 0, // 设置看板娘水平偏移
+                "vOffset": 0, // 设置看板娘垂直偏移
+            },
+            "mobile": {
+                "show": true, // 是否在移动设备上显示看板娘
+            },
+            "react": {
+                "opacityDefault": 0.7, // 设置看板娘的透明度
+            },
+        });
+    };
+
+
+    </script>
+    <div id="recommendation"></div>
+    <p>这是一个使用CSS动画的盒子，你可以用鼠标移动到它上面，看看会发生什么。</p>
+    <div class="box"></div>
+    <div id="live2d-widget"></div>
+</body>
+</html>
